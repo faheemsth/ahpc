@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.heading-top {
+    font-size: 22px;
+    font-weight: bold;
+    color: #006837;
+}
+
+.gov-heading {
+
+    color: #39b54a;
+    font-size: 18px;
+
+}
+
+.head-text {
+    color: #006837;
+    font-size: 14px;
+}
+
+/* main navbar css */
+.navbar {
+    background-color: #005d32;
+    color: #fff;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    border-right: 1px solid #fff;
+    padding: 5px 15px;
+    font-size: 16px;
+}
+
+@media(max-width:970px) {
+    .navbar-nav .nav-link {
+        border-right: hidden;
+    }
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffffff;
+    border-bottom: 1px solid #fff;
+}
+
+/* navbar-button */
+.btn-1 {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border-radius: 8px;
+    border: 2px solid rgb(249, 249, 249);
+    font-family: "montserrat", sans-serif;
+    text-align: center;
+    padding: 8px 10px;
+
+    margin: 0px 4px;
+
+
+}
+
+
+.btn-1:hover {
+    color: #39b54a;
+    background-color: #fdfffe;
+}
+
+@media(max-width:990px) {
+    .log-in-two {
+        display: none;
+    }
+}
+
+@media(min-width:997px) and (max-width:2560px) {
+    .log-in {
+        display: none;
+    }
+}
+
+/* carousal css */
+.carousel-item img {
+    filter: brightness(60%);
+}
+
+.c-item {
+    height: 500px;
+
+}
+
+.carousel {
+    position: relative;
+    z-index: 12;
+}
+
+/* section-4 info-box */
+
+@media(max-width:767px) {
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
+/* card css */
+
+#propt .card:hover{
+    transform: scale(1.05);
+    border: 2px solid #94e29f;
+
+}
+#propt .card{
+    transition: all 0.4s ease-in-out ;
+
+    box-shadow: 5px 5px 4px #c1e4c6;
+}
+#propt .card-heading{
+    font-family: sans-serif;
+}
+.border-center {
+    border: 2px solid #39b54a;
+    margin: auto;
+    width: 50px;
+
+}
+ /*  banner section */
+
+#grade-1{
+    background-color: #006837;
+}
+.border-center-2 {
+    border: 2px solid #ffffff;
+    margin: auto;
+    width: 50px;
+
+}
+
+.infor p{
+    margin: 5px 0px ;
+}
