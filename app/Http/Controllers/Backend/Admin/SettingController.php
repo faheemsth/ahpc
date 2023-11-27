@@ -64,13 +64,13 @@ class SettingController extends Controller
             $institute->name = $title;
             $institute->save();
 
-            return redirect('settings?id=institute')->with('message', 'Institute added successfully!');
+            return redirect('institutes/show?id=institute')->with('message', 'Institute added successfully!');
         } else {
 
             $id = $request->input('id');
             $name = $request->input('name');
             Institute::where('id', $id)->update(['name' => $name]);
-            return redirect('settings?id=institute')->with('message', 'Institute updated successfully!');
+            return redirect('institutes/show?id=institute')->with('message', 'Institute updated successfully!');
         }
     }
 
@@ -78,7 +78,7 @@ class SettingController extends Controller
     {
         $id = $_GET['id'];
         Institute::where('id', $id)->delete();
-        return redirect('settings?id=institute')->with('message', 'Institute deleted successfully!');
+        return redirect('institutes/show?id=institute')->with('message', 'Institute deleted successfully!');
     }
 
 
@@ -90,13 +90,13 @@ class SettingController extends Controller
             $type->type = $type_v;
             $type->save();
 
-            return redirect('settings?id=institute-type')->with('message', 'Institute type added successfully!');
+            return redirect('institutes/show?id=institute-type')->with('message', 'Institute type added successfully!');
         } else {
 
             $id = $request->input('id');
             $type = $request->input('type');
             InstituteType::where('id', $id)->update(['type' => $type]);
-            return redirect('settings?id=institute-type')->with('message', 'Institute type updated successfully!');
+            return redirect('institutes/show?id=institute-type')->with('message', 'Institute type updated successfully!');
         }
     }
 
@@ -104,7 +104,7 @@ class SettingController extends Controller
     {
         $id = $_GET['id'];
         InstituteType::where('id', $id)->delete();
-        return redirect('settings?id=institute-type')->with('message', 'Institute type deleted successfully!');
+        return redirect('institutes/show?id=institute-type')->with('message', 'Institute type deleted successfully!');
     }
 
     public function saveOverseasDocumentType(Request $request){
@@ -116,14 +116,14 @@ class SettingController extends Controller
             $type->fee = $request->input('fee');
             $type->save();
 
-            return redirect('settings?id=overseas-type')->with('message', 'Overseas document type added successfully!');
+            return redirect('overseas/show?id=overseas-type')->with('message', 'Overseas document type added successfully!');
 
         } else {
 
             $id = $request->input('id');
             $type = $request->input('name');
             OverseasDocumentType::where('id', $id)->update(['type' => $type,'fee' => $request->input('fee')]);
-            return redirect('settings?id=overseas-type')->with('message', 'Overseas document type updated successfully!');
+            return redirect('overseas/show?id=overseas-type')->with('message', 'Overseas document type updated successfully!');
         }
     }
 
@@ -133,7 +133,7 @@ class SettingController extends Controller
     {
         $id = $_GET['id'];
         OverseasDocumentType::where('id', $id)->delete();
-        return redirect('settings?id=overseas-type')->with('message', 'Overseas document type deleted successfully!');
+        return redirect('overseas/show?id=overseas-type')->with('message', 'Overseas document type deleted successfully!');
     }
 
 
@@ -146,7 +146,7 @@ class SettingController extends Controller
         $institute = $request->input('institute');
 
         Discipline::where('id', $id)->update(['amount' => $amount, 'institute_type' => $type, 'institute' => $institute]);
-        return redirect('settings?id=discipline-fee')->with('message', 'Discipline updated successfully!');
+        return redirect('institutes/show?id=discipline-fee')->with('message', 'Discipline updated successfully!');
     }
 
     public function getdiscipline()
@@ -174,13 +174,13 @@ class SettingController extends Controller
     public function editDisciplineAmount(Request $request)
     {
         Discipline::where('id', $request->discipline_id)->update(['amount' => $request->amount]);
-        return redirect('settings?id=discipline-fee')->with('message', 'Discipline updated successfully!');
+        return redirect('institutes/show?id=discipline-fee')->with('message', 'Discipline updated successfully!');
     }
 
     public function deleteDiscipline(Request $request)
     {
         Discipline::where('id', $request->id)->delete();
-        return redirect('settings?id=discipline-fee')->with('message', 'Discipline delete successfully!');
+        return redirect('institutes/show?id=discipline-fee')->with('message', 'Discipline delete successfully!');
     }
 
 

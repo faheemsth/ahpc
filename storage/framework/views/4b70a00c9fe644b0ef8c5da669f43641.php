@@ -86,6 +86,16 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                 <a class="nav-link menu-link" href="/ahpc">
+                    <i class="bx bxs-school"></i> <span>AHPs</span>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link menu-link" href="<?php echo e(route('users')); ?>">
+                    <i class="las la-tachometer-alt"></i> <span>Users</span>
+                </a>
+            </li>
                 <li class="nav-item d-none">
                     <a class="nav-link menu-link" href="#student" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="student">
                         <i class='bx bxs-group'></i> <span><?php echo app('translator')->get('Students'); ?></span>
@@ -129,40 +139,51 @@
                 </li>
                 <li class="nav-item">
                     
-                    <a class="nav-link menu-link" href="<?php echo e(route('users')); ?>">
-                        <i class="las la-tachometer-alt"></i> <span>Users</span>
-                    </a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('settings')); ?>">
-                        <i class="las la-tachometer-alt"></i> <span>Setting</span>
-                    </a>
-                </li> -->
 
-                <li class="nav-item">
-                    <a href="#Council" class="nav-link" data-bs-toggle="collapse" role="button"><?php echo app('translator')->get('Setting'); ?>
-                    </a>
-                    <div class="collapse menu-dropdown" id="Council">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link"><?php echo app('translator')->get('Patron'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link"><?php echo app('translator')->get('Chairman'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link"><?php echo app('translator')->get('Member'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link"><?php echo app('translator')->get('Staff'); ?></a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="<?php echo e(route('institutes.show')); ?>">
+                        <i class="las la-tachometer-alt"></i> <span>Institute</span>
+                    </a>
+
+                    <a class="nav-link menu-link" href="<?php echo e(route('overseas.show')); ?>">
+                        <i class="las la-tachometer-alt"></i> <span>Overseas</span>
+                    </a>
+
+                    <a class="nav-link menu-link" href="<?php echo e(route('polices.show')); ?>">
+                        <i class="las la-tachometer-alt"></i> <span>Policy Category</span>
+                    </a>
+                    <a class="nav-link menu-link" href="<?php echo e(route('pages.show')); ?>">
+                        <i class="las la-tachometer-alt"></i> <span>Pages</span>
+                    </a>
+                    <a class="nav-link menu-link" href="<?php echo e(route('blog.show')); ?>">
+                        <i class="las la-tachometer-alt"></i> <span>Blogs</span>
+                    </a>
+
+                </li>
+
+                <!--<li class="nav-item">-->
+                <!--    <a href="#Council" class="nav-link" data-bs-toggle="collapse" role="button"><?php echo app('translator')->get('Setting'); ?>-->
+                <!--    </a>-->
+                <!--    <div class="collapse menu-dropdown" id="Council">-->
+                <!--        <ul class="nav nav-sm flex-column">-->
+                <!--            <li class="nav-item">-->
+                <!--                <a href="#" class="nav-link"><?php echo app('translator')->get('Patron'); ?></a>-->
+                <!--            </li>-->
+                <!--            <li class="nav-item">-->
+                <!--                <a href="#" class="nav-link"><?php echo app('translator')->get('Chairman'); ?></a>-->
+                <!--            </li>-->
+                <!--            <li class="nav-item">-->
+                <!--                <a href="#" class="nav-link"><?php echo app('translator')->get('Member'); ?></a>-->
+                <!--            </li>-->
+                <!--            <li class="nav-item">-->
+                <!--                <a href="#" class="nav-link"><?php echo app('translator')->get('Staff'); ?></a>-->
+                <!--            </li>-->
+                <!--        </ul>-->
+                <!--    </div>-->
+                <!--</li>-->
                 <?php endif; ?>
-                <a class="nav-link menu-link" href="/ahpc">
-                    <i class="bx bxs-school"></i> <span>AHPC</span>
-                </a>
+
             </ul>
         </div>
         <!-- Sidebar -->

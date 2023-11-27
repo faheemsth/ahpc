@@ -8,7 +8,7 @@
 About
 <?php $__env->endSlot(); ?>
 <?php $__env->slot('title'); ?>
-Overseas
+Institutes
 <?php $__env->endSlot(); ?>
 <?php echo $__env->renderComponent(); ?>
 
@@ -17,23 +17,85 @@ Overseas
 <div class="col-xl-12">
     <div class="card card-height-100">
         <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Overseas</h4>
+            <h4 class="card-title mb-0 flex-grow-1">Institutions</h4>    
         </div><!-- end card header -->
 
         <div class="card-body">
+
+        <div class="filters my-4">
+                    <form action="">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Institutes</label>
+                                    <select name="institute" id="" class="form form-select select2">
+                                       <option value="">Select Institute</option>
+
+                                       <?php $__empty_1 = true; $__currentLoopData = $institutes_c; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $institute): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                            <option value="<?php echo e($institute->name); ?>"><?php echo e($institute->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?> 
+
+                                       <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Institute Types</label>
+                                    <select name="institute_type" id="" class="form form-select select2">
+                                       <option value="">Select Type</option>
+
+                                       <?php $__empty_1 = true; $__currentLoopData = $institute_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                            <option value="<?php echo e($type->type); ?>"><?php echo e($type->type); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?> 
+
+                                       <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Status</label>
+                                    <select name="status" id="" class="form form-select select2">
+                                        <option value="" <?= isset($_GET['status']) && empty($_GET['status']) ? 'selected' : '' ?>>Select Status</option>
+                                        <option value="1" <?= isset($_GET['status']) && $_GET['status'] == 0 ? 'selected' : '' ?>>Pending</option>
+                                        <option value="1" <?= isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' ?>>Zero</option>
+                                        <option value="2" <?= isset($_GET['status']) && $_GET['status'] == 2 ? 'selected' : '' ?>>Accreditation Visit</option>
+                                        <option value="3" <?= isset($_GET['status']) && $_GET['status'] == 3 ? 'selected' : '' ?>>Re-Accreditation Visit</option>
+                                        <option value="4" <?= isset($_GET['status']) && $_GET['status'] == 4 ? 'selected' : '' ?>>Approved</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <br>
+                                <input type="submit" class="btn btn-primary mt-1" value="Submit" name="submit">
+                                <a href="<?php echo e(route('institute')); ?>" class="btn btn-danger mt-1">Reset</a>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            
             <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle">
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Institute</th>
+                        <th>Category</th>
                         <th>Status</th>
                         <th>Amount</th>
                         <th>Actions</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if(\Auth::user()->role_id == 1): ?>
+                    <?php if(\Auth::user()->role_id != 2): ?>
 
-                    <?php $__currentLoopData = $overseas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $oversea): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $institutes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $institute): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
@@ -41,33 +103,54 @@ Overseas
                                     <img src="<?php echo e(URL::asset('build/images/companies/Allama_Iqbal_Open_University_logo.png')); ?>" alt="" class="avatar-sm p-2" />
                                 </div>
                                 <div>
-                                    <h5 class="fs-14 my-1 fw-medium"><a href="/institute-profile/<?php echo e($oversea->id); ?>" class="text-reset"><?php echo e($oversea->first_name); ?></a>
+                                    <h5 class="fs-14 my-1 fw-medium"><a href="/institute-profile/<?php echo e($institute->id); ?>" class="text-reset"><?php echo e($institute->first_name); ?></a>
                                     </h5>
-                                    <span class="text-muted"><?php echo e($oversea->postel_address); ?></span>
+                                    <span class="text-muted"><?php echo e($institute->postel_address); ?></span>
                                 </div>
                             </div>
                         </td>
 
-                         <td>
-                            <?php if($oversea->inst_approval_status == 1): ?>
-                             <span class="badge bg-success badge-success">Approved</span>
+                        <td>
+                            <span class="text-muted"> <?php echo e(ucwords($institute->institute)); ?></span>
+                        </td>
 
+                        <td>
+                            <span class="text-muted"> <?php echo e(ucwords($institute->institute_type)); ?></span>
+                        </td>
+
+
+                         <td>
+                            <?php if($institute->inst_approval_status == 1): ?>
+                             <span class="badge bg-primary badge-primary">Zero Visit</span>
+                            <?php elseif($institute->inst_approval_status == 2): ?>
+                            <span class="badge bg-info badge-info">Accreditation Visit</span>
+                           <?php elseif($institute->inst_approval_status == 3): ?>
+                            <span class="badge bg-danger badge-danger">Re-Accreditation Visit</span>
+                            <?php elseif($institute->inst_approval_status == 4): ?>
+                            <span class="badge bg-success badge-success">Approved</span>
                             <?php else: ?>
                             <span class="badge bg-warning badge-warning">Pending</span>
                             <?php endif; ?>
-                        </td>
+                        </td> 
 
                         <td>
-                            <span class="text-muted">PKR <?php echo e($oversea->amount); ?></span>
+                            <span class="text-muted">PKR <?php echo e($institute->amount); ?></span>
                         </td>
                         <td>
-                            <a style="cursor:pointer" onclick="viewInvoices(<?php echo e($oversea->id); ?>,`<?php echo e($oversea->first_name); ?>`)" class="link-success fs-20" title="Invoices"><i class="ri-bill-fill"></i></a>
+                            <a style="cursor:pointer" onclick="viewInvoices(<?php echo e($institute->id); ?>,`<?php echo e($institute->first_name); ?>`)" class="link-success fs-20" title="Invoices"><i class="ri-bill-fill"></i></a>
+                            <?php if($institute->inst_approval_status == 1): ?>
+                            <a style="cursor:pointer" onclick="setupVisit(<?php echo e($institute->id); ?>,`Zero`,1)" class="link-success fs-20" title="Setup Zero Visit"><i class="ri-creative-commons-zero-fill"></i></a>
+                            <?php elseif($institute->inst_approval_status == 2): ?>
+                            <a style="cursor:pointer" onclick="setupVisit(<?php echo e($institute->id); ?>,`Accreditation`,2)" class="link-success fs-20" title="Setup Accreditation Visit"><i class="ri-award-fill"></i></a>
+                            <?php elseif($institute->inst_approval_status == 3): ?>
+                            <a style="cursor:pointer" onclick="setupVisit(<?php echo e($institute->id); ?>,`Re-Accreditation`,3)" class="link-success fs-20" title="Setup Re-Accreditation Visit"><i class="ri-award-fill"></i></a>
+                            <?php endif; ?>
                         </td>
                     </tr><!-- end -->
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php else: ?>
-                    <?php $__currentLoopData = $$overseas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $oversea): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php if($$oversea->id == \Auth::user()->id): ?>
+                    <?php $__currentLoopData = $institutes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $institute): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($institute->id == \Auth::user()->id): ?>
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
@@ -75,19 +158,19 @@ Overseas
                                     <img src="<?php echo e(URL::asset('build/images/companies/Allama_Iqbal_Open_University_logo.png')); ?>" alt="" class="avatar-sm p-2" />
                                 </div>
                                 <div>
-                                    <h5 class="fs-14 my-1 fw-medium"><a href="/institute_profile" class="text-reset"><?php echo e($oversea->first_name); ?></a>
+                                    <h5 class="fs-14 my-1 fw-medium"><a href="/institute_profile" class="text-reset"><?php echo e($institute->first_name); ?></a>
                                     </h5>
-                                    <span class="text-muted"><?php echo e($oversea->postel_address); ?></span>
+                                    <span class="text-muted"><?php echo e($institute->postel_address); ?></span>
                                 </div>
                             </div>
                         </td>
-
+                        
 
                         <td>
-                            <span class="text-muted">PKR <?php echo e($oversea->amount); ?></span>
+                            <span class="text-muted">PKR <?php echo e($institute->amount); ?></span>
                         </td>
                         <td>
-                            <a style="cursor:pointer" onclick="viewInvoices(<?php echo e($oversea->id); ?>,`<?php echo e($oversea->first_name); ?>`)" class="link-success fs-20" title="Invoices"><i class="ri-bill-fill"></i></a>
+                            <a style="cursor:pointer" onclick="viewInvoices(<?php echo e($institute->id); ?>,`<?php echo e($institute->first_name); ?>`)" class="link-success fs-20" title="Invoices"><i class="ri-bill-fill"></i></a>
                         </td>
 
                     </tr><!-- end -->
@@ -98,6 +181,10 @@ Overseas
 
                 </tbody>
             </table><!-- end table -->
+            
+
+            
+
         </div> <!-- .card-body-->
     </div> <!-- .card-->
 </div> <!-- .col-->
@@ -235,5 +322,4 @@ Overseas
 
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\Projects\ahpc\resources\views/user-panels/admin-panel/overseas/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\Projects\ahpc\resources\views/user-panels/admin-panel/Institute_profile/index.blade.php ENDPATH**/ ?>

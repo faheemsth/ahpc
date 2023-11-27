@@ -124,7 +124,14 @@ Route::group ( ['namespace' => $admin_path,'middleware' => ['auth']], function (
     Route::post('/save_program','DisciplineController@storeProgram')->name('save_program');
     // Route::post('/update_program','DisciplineController@updateProgram')->name('update_program');
 
-    Route::get('/settings','SettingController@index')->name('settings');
+    Route::get('/institutes/show','SettingController@index')->name('institutes.show');
+    Route::get('/overseas/show','SettingController@index')->name('overseas.show');
+    Route::get('/polices/show','SettingController@index')->name('polices.show');
+
+    Route::get('/pages/show','SettingController@index')->name('pages.show');
+    Route::get('/blogs/show','SettingController@index')->name('blog.show');
+
+
     Route::post('/save_document_types','SettingController@storeDocType')->name('save_document_types');
     Route::post('/save_fee_structure','SettingController@storeFeeStructure')->name('save_fee_structure');
 

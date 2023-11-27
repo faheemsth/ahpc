@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('translation.dashboards'); ?>
 <?php $__env->stopSection(); ?>
@@ -187,7 +188,7 @@
                         </div><!-- end card -->
                     </div><!-- end col -->
 
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-3 col-md-6 d-none">
                         <!-- card -->
                         <div class="card card-animate">
                             <div class="card-body">
@@ -454,7 +455,7 @@
                     <div class="col-md-6">
                         <div class="card card-height-100">
                             <div class="card-header align-items-center d-flex">
-                                <h4 class="card-title mb-0 flex-grow-1">AHPCS</h4>
+                                <h4 class="card-title mb-0 flex-grow-1">AHPs</h4>
                             </div><!-- end card header -->
 
                             <div class="card-body">

@@ -1,11 +1,10 @@
-@extends('layouts.master')
-@section('title')
-    @lang('translation.settings')
-@endsection
-@section('content')
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('translation.settings'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="position-relative mx-n4 mt-n4">
         <div class="profile-wid-bg profile-setting-img">
-            <img src="{{ URL::asset('build/images/profile-bg.jpg') }}" class="profile-wid-img" alt="">
+            <img src="<?php echo e(URL::asset('build/images/profile-bg.jpg')); ?>" class="profile-wid-img" alt="">
             <div class="overlay-content">
                 <div class="text-end p-3">
                     <div class="p-0 ms-auto rounded-circle profile-photo-edit">
@@ -25,7 +24,7 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                            <img src="@if (Auth::user()->avatar != '') {{ URL::asset(Auth::user()->avatar) }}@else{{ URL::asset('build/images/users/khan.jpg') }} @endif"
+                            <img src="<?php if(Auth::user()->avatar != ''): ?> <?php echo e(URL::asset(Auth::user()->avatar)); ?><?php else: ?><?php echo e(URL::asset('build/images/users/khan.jpg')); ?> <?php endif; ?>"
                                 class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                 <input id="profile-img-file-input" type="file" class="profile-img-file-input" onchange="uploadImage()">
@@ -36,7 +35,7 @@
                                 </label>
                             </div>
                         </div>
-                        <h5 class="fs-17 mb-1">{{ $user->first_name }}</h5>
+                        <h5 class="fs-17 mb-1"><?php echo e($user->first_name); ?></h5>
                         <p class="text-muted mb-0">Lead Designer / Developer</p>
                     </div>
                 </div>
@@ -85,15 +84,15 @@
                 <div class="card-body p-4">
                     <div class="tab-content">
                         <div class="tab-pane active" id="personalDetails" role="tabpanel">
-                            <form action="{{ url('update_profile_admin') }}" method="post" >
-                                @csrf
+                            <form action="<?php echo e(url('update_profile_admin')); ?>" method="post" >
+                                <?php echo csrf_field(); ?>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="first_name" class="form-label">Full
                                                 Name</label>
                                             <input type="text" class="form-control" id="first_name"
-                                                placeholder="Enter your FullName" name="first_name" value="{{ $user->first_name }}">
+                                                placeholder="Enter your FullName" name="first_name" value="<?php echo e($user->first_name); ?>">
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -101,7 +100,7 @@
                                         <div class="mb-3">
                                             <label for="ceo_name" class="form-label">Name of the Head of Institution/CEO/Owner</label>
                                             <input type="text" class="form-control" name="ceo_name" id="ceo_name"
-                                                placeholder="Enter your Name of the Head of Institution/CEO/Owner" value="{{ $user->ceo_name }}">
+                                                placeholder="Enter your Name of the Head of Institution/CEO/Owner" value="<?php echo e($user->ceo_name); ?>">
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -110,7 +109,7 @@
                                             <label for="contact" class="form-label">Contact
                                                 Number</label>
                                             <input type="text" class="form-control" name="contact" id="contact"
-                                                placeholder="Enter your phone number" value="{{ $user->contact }}">
+                                                placeholder="Enter your phone number" value="<?php echo e($user->contact); ?>">
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -118,14 +117,14 @@
                                         <div class="mb-3">
                                             <label for="student_num" class="form-label">Number of students enrolled*</label>
                                             <input type="number" class="form-control" name="student_num" id="student_num"
-                                                placeholder="Number of students" value="{{ $user->student_num }}">
+                                                placeholder="Number of students" value="<?php echo e($user->student_num); ?>">
                                         </div>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="JoiningdatInput" class="form-label">Date of Establishment*</label>
-                                            <input type="date" class="form-control" name="deo" id="deo" value="{{ $user->doe }}"  placeholder="Select date" />
+                                            <input type="date" class="form-control" name="deo" id="deo" value="<?php echo e($user->doe); ?>"  placeholder="Select date" />
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -134,14 +133,14 @@
                                         <div class="mb-3">
                                             <label for="website_url" class="form-label">Website</label>
                                             <input type="text" class="form-control" name="website_url" id="website_url"
-                                                placeholder="Website" value="{{ $user->website_url }}">
+                                                placeholder="Website" value="<?php echo e($user->website_url); ?>">
                                         </div>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="websiteInput1" class="form-label">Postel Address*</label>
-                                           <textarea name="postel_address" class="form-control" id="postel_address" cols="30" rows="5">{{ $user->postel_address }}</textarea>
+                                           <textarea name="postel_address" class="form-control" id="postel_address" cols="30" rows="5"><?php echo e($user->postel_address); ?></textarea>
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -150,7 +149,7 @@
                                             <label for="tehsil" class="form-label">Tehsil*
                                                 </label>
                                             <input type="text" class="form-control" name="tehsil" id="tehsil" placeholder="Tehsil"
-                                                value="{{ $user->tehsil }}" />
+                                                value="<?php echo e($user->tehsil); ?>" />
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -159,7 +158,7 @@
                                             <label for="countryInput" class="form-label">District*
                                                 </label>
                                             <input type="text" class="form-control" name="district" id="district"
-                                                placeholder="District" value="{{ $user->district }}" />
+                                                placeholder="District" value="<?php echo e($user->district); ?>" />
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -168,29 +167,29 @@
                                             <label for="zipcodeInput" class="form-label">Province*
                                                 </label>
                                             <input type="text" class="form-control"
-                                                id="province" name="province" placeholder="Enter Province*" value="{{ $user->province }}">
+                                                id="province" name="province" placeholder="Enter Province*" value="<?php echo e($user->province); ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="cnic_no" class="form-label">CNIC*
                                         </label>
                                     <input type="text" class="form-control"
-                                        id="cnic_no" name="cnic_no" placeholder="Enter CNIC*" value="{{ $user->cnic_no }}">
+                                        id="cnic_no" name="cnic_no" placeholder="Enter CNIC*" value="<?php echo e($user->cnic_no); ?>">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="cnic" class="form-label">Qualification*
                                         </label>
                                     <input type="text" class="form-control"
-                                        id="qualification" name="qualification" placeholder="Enter Qualification*" value="{{ $user->qualification }}">
+                                        id="qualification" name="qualification" placeholder="Enter Qualification*" value="<?php echo e($user->qualification); ?>">
                                     </div>
                                     <div class="col-md-5">
                                         <label class="me-1">Gender :<span style="color:red">*</span></label>
                                         <div class="mb-3 col-md-6">
-                                            <input class="form-check-input" type="radio" name="gender" value="male" {{ $user->gender =='male'?"checked":'' }}>
+                                            <input class="form-check-input" type="radio" name="gender" value="male" <?php echo e($user->gender =='male'?"checked":''); ?>>
                                             <label class="form-check-label">Male</label>
-                                            <input class="form-check-input"{{ $user->gender =='female'?"checked":'' }} type="radio" name="gender" value="female">
+                                            <input class="form-check-input"<?php echo e($user->gender =='female'?"checked":''); ?> type="radio" name="gender" value="female">
                                             <label class="form-check-label">Female</label>
-                                            <input class="form-check-input" type="radio" {{ $user->gender =='other'?"checked":'' }} name="gender" value="other">
+                                            <input class="form-check-input" type="radio" <?php echo e($user->gender =='other'?"checked":''); ?> name="gender" value="other">
                                             <label class="form-check-label">Others</label>
                                         </div>
                                     </div>
@@ -200,7 +199,7 @@
                                             <label for="description"
                                                 class="form-label">Description</label>
                                             <textarea class="form-control" name="description" id="description" placeholder="Enter your description"
-                                                rows="3">{{ $user->description }}</textarea>
+                                                rows="3"><?php echo e($user->description); ?></textarea>
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -219,8 +218,8 @@
                         <div class="tab-pane" id="changePassword" role="tabpanel">
 
 
-                            <form action="{{ url('update_password_admin') }}" method="post">
-                                @csrf
+                            <form action="<?php echo e(url('update_password_admin')); ?>" method="post">
+                                <?php echo csrf_field(); ?>
                                 <div class="row g-2">
                                     <div class="col-lg-6">
                                         <div>
@@ -529,13 +528,14 @@
         <!--end col-->
     </div>
     <!--end row-->
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 
-    <script src="{{ URL::asset('build/js/pages/profile-setting.init.js') }}"></script>
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <script src="<?php echo e(URL::asset('build/js/pages/profile-setting.init.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
     <script>
-        var message = {!! json_encode(Session::get('success')) !!}
+        var message = <?php echo json_encode(Session::get('success')); ?>
+
         if(message != null){
             Swal.fire({
                 position: 'center',
@@ -548,7 +548,7 @@
         }
 
         function uploadImage(){
-            var action = "{{ url('profile_avatar_admin') }}";
+            var action = "<?php echo e(url('profile_avatar_admin')); ?>";
             var method='POST';
             let form_data = new FormData();
             var myimg = document.getElementById('profile-img-file-input').files[0];
@@ -578,4 +578,6 @@
 
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\Projects\ahpc\resources\views/user-panels/admin-panel/users/editprofile.blade.php ENDPATH**/ ?>

@@ -88,6 +88,7 @@
                 </ul>
             </div>
             <div class="dropdown  my-3 my-lg-0">
+                @if (!Auth::check())
                 <a href="{{ url('/login') }}" class=" btn-1 log-in-two ">Log In</a>
 
                 <a href="" role="button" data-bs-toggle="dropdown" class="btn-1  dropdown-toggle"
@@ -99,6 +100,10 @@
                     <li><a class="dropdown-item" href="{{ url('overseass/signup') }}">For Overseas</a></li>
                     <li><a class="dropdown-item" href="{{ url('/ahpc/signup') }}">For AHP's</a></li>
                 </ul>
+                @else
+                <a href="{{ url('/dashboard') }}" class=" btn-1 log-in-two ">Dashboard</a>
+                @endif
+
             </div>
         </div>
 

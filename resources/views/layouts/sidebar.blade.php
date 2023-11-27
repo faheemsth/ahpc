@@ -99,14 +99,17 @@
                         <i class='bx bxs-school'></i> <span>@lang('Overseas AHPs')</span>
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                  <a class="nav-link menu-link" href="/ahpc">
                     <i class="bx bxs-school"></i> <span>AHPs</span>
                 </a>
                 </li>
-                
-                
+                <li class="nav-item">
+                <a class="nav-link menu-link" href="{{ route('users') }}">
+                    <i class="las la-tachometer-alt"></i> <span>Users</span>
+                </a>
+            </li>
                 <li class="nav-item d-none">
                     <a class="nav-link menu-link" href="#student" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="student">
                         <i class='bx bxs-group'></i> <span>@lang('Students')</span>
@@ -150,15 +153,28 @@
                 </li>
                 <li class="nav-item">
                     {{-- <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards"> --}}
-                    <a class="nav-link menu-link" href="{{ route('users') }}">
-                        <i class="las la-tachometer-alt"></i> <span>Users</span>
-                    </a>
+
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('settings') }}">
-                        <i class="las la-tachometer-alt"></i> <span>Setting</span>
+                    <a class="nav-link menu-link" href="{{ route('institutes.show') }}">
+                        <i class="las la-tachometer-alt"></i> <span>Institute</span>
                     </a>
-                </li> 
+
+                    <a class="nav-link menu-link" href="{{ route('overseas.show') }}">
+                        <i class="las la-tachometer-alt"></i> <span>Overseas</span>
+                    </a>
+
+                    <a class="nav-link menu-link" href="{{ route('polices.show') }}">
+                        <i class="las la-tachometer-alt"></i> <span>Policy Category</span>
+                    </a>
+                    <a class="nav-link menu-link" href="{{ route('pages.show') }}">
+                        <i class="las la-tachometer-alt"></i> <span>Pages</span>
+                    </a>
+                    <a class="nav-link menu-link" href="{{ route('blog.show') }}">
+                        <i class="las la-tachometer-alt"></i> <span>Blogs</span>
+                    </a>
+
+                </li>
 
                 <!--<li class="nav-item">-->
                 <!--    <a href="#Council" class="nav-link" data-bs-toggle="collapse" role="button">@lang('Setting')-->
@@ -181,7 +197,7 @@
                 <!--    </div>-->
                 <!--</li>-->
                 @endif
-               
+
             </ul>
         </div>
         <!-- Sidebar -->

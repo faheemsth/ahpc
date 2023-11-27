@@ -88,6 +88,7 @@
                 </ul>
             </div>
             <div class="dropdown  my-3 my-lg-0">
+                <?php if(!Auth::check()): ?>
                 <a href="<?php echo e(url('/login')); ?>" class=" btn-1 log-in-two ">Log In</a>
 
                 <a href="" role="button" data-bs-toggle="dropdown" class="btn-1  dropdown-toggle"
@@ -97,8 +98,12 @@
                     <li><a class="dropdown-item" href="<?php echo e(url('/maintenance')); ?>">For Student</a></li>
 
                     <li><a class="dropdown-item" href="<?php echo e(url('overseass/signup')); ?>">For Overseas</a></li>
-                    <li><a class="dropdown-item" href="<?php echo e(url('/maintenance')); ?>">For AHP's</a></li>
+                    <li><a class="dropdown-item" href="<?php echo e(url('/ahpc/signup')); ?>">For AHP's</a></li>
                 </ul>
+                <?php else: ?>
+                <a href="<?php echo e(url('/dashboard')); ?>" class=" btn-1 log-in-two ">Dashboard</a>
+                <?php endif; ?>
+
             </div>
         </div>
 

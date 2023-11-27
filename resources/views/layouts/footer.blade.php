@@ -1,12 +1,9 @@
 <footer class="footer">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <script>document.write(new Date().getFullYear())</script> © .
-            </div>
-            <div class="col-sm-6">
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-3">
                 <div class="text-sm-end d-none d-sm-block">
-                    Design & Develop by STH
+                    <script>document.write(new Date().getFullYear())</script> © . Design & Develop by STH
                 </div>
             </div>
         </div>

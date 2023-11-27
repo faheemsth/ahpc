@@ -16,6 +16,7 @@ use App\Models\OverseasDocument;
 use App\Models\OverseasDocumentType;
 use App\Models\Program;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -34,10 +35,10 @@ class ProfileController extends Controller
 
         // dd($doc_types);
         return view('user-panels.admin-panel.users.profile',compact('disciplines','doc_types','inst_prgs'));
-    }    
+    }
 
     public function storeDocument(Request $request){
-        
+
         $user = \Auth::user();
 
         $target_dir = 'storage/institute_documents/'.$user->id;
@@ -45,12 +46,12 @@ class ProfileController extends Controller
         if (!File::isDirectory($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
-        
+
         $file = $request->file('doc_file');
         //Move Uploaded File
         $random_no = time();
         $file_name = $request->type.'-'.$random_no.'-'.$file->getClientOriginalName();
-        
+
         if($file->move($target_dir, $file_name)) {
             $doc_type = DocumentType::where('title',$request->type)->where('institute',$user->institute)->where('institute_type',$user->institute_type)->first();
 
@@ -78,7 +79,7 @@ class ProfileController extends Controller
         }
         // Session::flash('message', 'User Details Updated successfully!');
         // Session::flash('alert-class', 'alert-success');
-           
+
         return redirect()->back();
     }
 
@@ -112,7 +113,7 @@ class ProfileController extends Controller
             'isSuccess' => true,
             'status_code' => 200,
             'Message' => "Programs added successfully.Please wait for admin approval!"
-        ], 200); 
+        ], 200);
     }
     public function editProfile(){
         $user = \Auth::user();
@@ -124,7 +125,7 @@ class ProfileController extends Controller
         $user->update($data );
         return redirect()->back()->with(['success'=>'Profile Updated Successfully!']);
     }
-     
+
   public function profile_avatar(Request $request)
   {
         $user = \Auth::user();
@@ -147,16 +148,9 @@ class ProfileController extends Controller
    // change password
   public function chnagePassword(Request $request)
   {
-      # Validation
-      $validate = $request->validate([
-        'password' => 'required|min:8',
-      ]);
-      #Update the new Password
-      if ($validate) {
-        $customer = User::where('id', \Auth::user()->id)->update([
-          'password' => Hash::make($request->new_password)
+        User::where('id',Auth::id())->update([
+          'password' => Hash::make($request->confirm_password)
         ]);
-      } 
       return redirect()->back()->with(['success'=>'Password Updated Successfully!']);
   }
 }

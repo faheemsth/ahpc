@@ -11,9 +11,9 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('build/images/ahpc logo png.png')}}">
-    
+
     @include('layouts.head-css')
-    
+
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">

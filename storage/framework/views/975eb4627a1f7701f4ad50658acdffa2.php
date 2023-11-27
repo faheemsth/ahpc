@@ -2,7 +2,7 @@
     <style>
         #Footer p i{
             margin-right:5px;
-            
+
         }
         #Footer p{
             cursor: pointer ;
@@ -77,7 +77,7 @@
         <hr>
         <!-- Call to action -->
         <!-- Copyright -->
-        <div  style="background-color:#005d32;" class="text-white footer-copyright px-3 px-md-5 py-2">
+        <div  style="background-color:#005d32;" class="text-white footer-copyright px-3 px-md-5 py-2 text-center">
           Copyright © 2023: Design and Develop by STH
         </div>
       </footer>
